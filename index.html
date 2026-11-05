@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#6c5ce7">
-<title>Sorteio de Nomes</title>
+<title>Sorteio de Nomes e Números</title>
 <meta name="description" content="Ninguém repete. Sorte pra todo mundo!">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sorteio de Nomes">
+<meta property="og:title" content="Sorteio de Nomes e Números">
 <meta property="og:description" content="Ninguém repete. Sorte pra todo mundo!">
 <meta property="og:image" content="https://sorteios-tau.vercel.app/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -61,6 +61,8 @@ body::before{
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 main{width:100%;max-width:600px;display:flex;flex-direction:column;gap:20px;position:relative;z-index:1}
+.view{display:flex;flex-direction:column;gap:20px}
+.hidden{display:none!important}
 
 /* header */
 header{text-align:center;padding-top:4px}
@@ -73,6 +75,21 @@ header{text-align:center;padding-top:4px}
 h1{margin:0;font-size:2.2rem;font-weight:800;letter-spacing:-.8px;background:linear-gradient(90deg,var(--accent),var(--pink),var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
 @keyframes shine{to{background-position:200% center}}
 header p{margin:6px 0 0;color:var(--muted);font-size:.92rem}
+
+/* abas */
+.tabs{
+  display:flex;gap:6px;padding:6px;border-radius:20px;background:var(--card);border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);
+}
+.tabs button{
+  flex:1;padding:12px 10px;border-radius:15px;background:transparent;color:var(--muted);box-shadow:none;font-size:.92rem;
+}
+.tabs button:hover:not(:disabled){transform:none;box-shadow:none;filter:none;color:var(--accent)}
+.tabs button.on{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+  box-shadow:0 8px 20px rgba(108,92,231,.34),inset 0 1px 0 rgba(255,255,255,.28);
+}
+.tabs button.on:hover:not(:disabled){color:#fff}
 
 /* cards */
 .card{
@@ -88,12 +105,19 @@ header p{margin:6px 0 0;color:var(--muted);font-size:.92rem}
 
 /* input */
 .row{display:flex;gap:10px}
-input{
+input[type=text],input[type=number],input:not([type]){
   flex:1;min-width:0;padding:14px 18px;border-radius:16px;border:1.5px solid var(--border);background:var(--input);color:var(--text);
   font:inherit;font-size:.95rem;outline:none;transition:border-color .2s,box-shadow .2s;
 }
 input::placeholder{color:var(--muted);opacity:.8}
 input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(108,92,231,.16)}
+
+/* intervalo de números */
+.range{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px 4px}
+.field input{width:100%;font-size:1.25rem;font-weight:700;text-align:center;padding:14px 10px}
+.check{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.9rem;font-weight:500;cursor:pointer;user-select:none}
+.check input{width:20px;height:20px;accent-color:var(--accent);margin:0;flex:none;cursor:pointer}
 
 /* botões */
 button{
@@ -145,15 +169,16 @@ button.danger.confirm{background:linear-gradient(135deg,var(--danger),#fab1a0);c
   background:radial-gradient(circle,rgba(108,92,231,.22),transparent 65%);pointer-events:none;
 }
 .label{position:relative;font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
-#result{
+.res{
   position:relative;min-height:150px;display:flex;align-items:center;justify-content:center;
   font-size:clamp(2rem,9vw,3.3rem);font-weight:800;word-break:break-word;line-height:1.1;margin-bottom:18px;border-radius:24px;padding:18px;
   background:linear-gradient(135deg,rgba(108,92,231,.1),rgba(253,121,168,.1));border:2px dashed var(--border);color:var(--accent);
   transition:background .3s,color .3s,box-shadow .3s;
 }
-#result.spin{filter:blur(1.4px);opacity:.85;border-color:var(--accent);animation:pulse .3s ease-in-out infinite alternate}
+.res.num{font-size:clamp(3rem,16vw,5.5rem);font-variant-numeric:tabular-nums;letter-spacing:-1px}
+.res.spin{filter:blur(1.4px);opacity:.85;border-color:var(--accent);animation:pulse .3s ease-in-out infinite alternate}
 @keyframes pulse{to{transform:scale(1.025)}}
-#result.win{
+.res.win{
   animation:pop .7s cubic-bezier(.2,1.7,.4,1);border-style:solid;border-color:transparent;color:#fff;
   background:linear-gradient(135deg,var(--accent),var(--pink));
   box-shadow:0 0 0 6px rgba(108,92,231,.14),0 0 50px rgba(108,92,231,.5),0 20px 40px rgba(253,121,168,.3);
@@ -182,6 +207,7 @@ ol li::before{
   background:linear-gradient(135deg,var(--accent),var(--pink));flex:none;box-shadow:0 4px 10px rgba(108,92,231,.3);
 }
 ol li:last-child{border-color:var(--accent);background:linear-gradient(90deg,rgba(108,92,231,.1),var(--chip))}
+ol.nums li{font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
 .empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px 0 8px}
 .empty span{display:block;font-size:1.8rem;margin-bottom:4px;opacity:.7}
 
@@ -201,49 +227,100 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
 <main>
   <header>
     <div class="logo">🎲</div>
-    <h1>Sorteio de Nomes</h1>
+    <h1 id="titulo">Sorteio de Nomes</h1>
     <p>Ninguém repete. Sorte pra todo mundo!</p>
   </header>
 
-  <section class="card">
-    <div class="top">
-      <h2><span class="ico">✍️</span>Participantes<span class="count" id="count">0</span></h2>
-      <button class="sec danger" id="clear">🗑️ Excluir tudo</button>
-    </div>
-    <div class="row">
-      <input id="nome" placeholder="Digite um nome (ou cole vários)" autocomplete="off">
-      <button id="add">＋ Add</button>
-    </div>
-    <div class="chips" id="lista"></div>
-    <div class="bar"><i id="prog"></i></div>
-    <p class="muted" id="info"></p>
-  </section>
+  <nav class="tabs" role="tablist">
+    <button id="tabNomes" class="on" role="tab">✍️ Nomes</button>
+    <button id="tabNum" role="tab">🔢 Números</button>
+  </nav>
 
-  <section class="card stage">
-    <div class="label">E o sorteado é...</div>
-    <div id="result">?</div>
-    <button class="big" id="sortear">✨ Sortear!</button>
-  </section>
+  <!-- ============ NOMES ============ -->
+  <div class="view" id="vNomes">
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">✍️</span>Participantes<span class="count" id="count">0</span></h2>
+        <button class="sec danger" id="clear">🗑️ Excluir tudo</button>
+      </div>
+      <div class="row">
+        <input id="nome" placeholder="Digite um nome (ou cole vários)" autocomplete="off">
+        <button id="add">＋ Add</button>
+      </div>
+      <div class="chips" id="lista"></div>
+      <div class="bar"><i id="prog"></i></div>
+      <p class="muted" id="info"></p>
+    </section>
 
-  <section class="card">
-    <div class="top">
-      <h2><span class="ico">🏆</span>Já sorteados</h2>
-      <button class="sec" id="reset">↺ Recomeçar</button>
-    </div>
-    <ol id="historico"></ol>
-  </section>
+    <section class="card stage">
+      <div class="label">E o sorteado é...</div>
+      <div class="res" id="result">?</div>
+      <button class="big" id="sortear">✨ Sortear!</button>
+    </section>
+
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">🏆</span>Já sorteados</h2>
+        <button class="sec" id="reset">↺ Recomeçar</button>
+      </div>
+      <ol id="historico"></ol>
+    </section>
+  </div>
+
+  <!-- ============ NÚMEROS ============ -->
+  <div class="view hidden" id="vNum">
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">🔢</span>Intervalo</h2>
+      </div>
+      <div class="range">
+        <div class="field">
+          <label for="nMin">De</label>
+          <input id="nMin" type="number" inputmode="numeric" step="1" value="1">
+        </div>
+        <div class="field">
+          <label for="nMax">Até</label>
+          <input id="nMax" type="number" inputmode="numeric" step="1" value="60">
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="nRep"> Permitir números repetidos</label>
+      <div class="bar"><i id="nProg"></i></div>
+      <p class="muted" id="nInfo"></p>
+    </section>
+
+    <section class="card stage">
+      <div class="label">O número sorteado é...</div>
+      <div class="res num" id="resultN">?</div>
+      <button class="big" id="sortearN">✨ Sortear número!</button>
+    </section>
+
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">🏆</span>Números sorteados</h2>
+        <button class="sec" id="resetN">↺ Recomeçar</button>
+      </div>
+      <ol id="histN" class="nums"></ol>
+    </section>
+  </div>
 
   <footer>Feito com 💜 e um pouquinho de sorte</footer>
 </main>
 
 <script>
 let nomes = [], sorteados = [];
+let modo = "nomes";
+let num = { min: 1, max: 60, hist: [], rep: false };
 const $ = id => document.getElementById(id);
+
 try {
   const s = JSON.parse(localStorage.getItem("sorteio") || "null");
-  if (s) { nomes = s.nomes || []; sorteados = s.sorteados || []; }
+  if (s) {
+    nomes = s.nomes || []; sorteados = s.sorteados || [];
+    if (s.modo === "numeros") modo = "numeros";
+    if (s.num) num = Object.assign(num, s.num);
+  }
 } catch (e) {}
-const salvar = () => { try { localStorage.setItem("sorteio", JSON.stringify({ nomes, sorteados })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("sorteio", JSON.stringify({ nomes, sorteados, modo, num })); } catch (e) {} };
 
 const GRADS = [
   "linear-gradient(135deg,#6c5ce7,#a29bfe)", "linear-gradient(135deg,#fd79a8,#e84393)",
@@ -251,7 +328,23 @@ const GRADS = [
   "linear-gradient(135deg,#e17055,#fab1a0)", "linear-gradient(135deg,#fdcb6e,#e1b12c)"
 ];
 const grad = n => { let h = 0; for (const c of n) h = (h * 31 + c.charCodeAt(0)) >>> 0; return GRADS[h % GRADS.length]; };
+const fmt = n => n.toLocaleString("pt-BR");
 
+/* ---------- abas ---------- */
+function setModo(m) {
+  modo = m;
+  const n = m === "nomes";
+  $("vNomes").classList.toggle("hidden", !n);
+  $("vNum").classList.toggle("hidden", n);
+  $("tabNomes").classList.toggle("on", n);
+  $("tabNum").classList.toggle("on", !n);
+  $("titulo").textContent = n ? "Sorteio de Nomes" : "Sorteio de Números";
+  salvar();
+}
+$("tabNomes").onclick = () => setModo("nomes");
+$("tabNum").onclick = () => setModo("numeros");
+
+/* ---------- NOMES ---------- */
 function adicionar(texto) {
   texto.split(/\n|,|;/).map(n => n.trim()).filter(Boolean).forEach(n => {
     if (!nomes.some(x => x.toLowerCase() === n.toLowerCase())) nomes.push(n);
@@ -337,7 +430,93 @@ $("clear").onclick = () => {
   salvar(); render();
 };
 
-/* confete */
+/* ---------- NÚMEROS ---------- */
+function intervaloValido() {
+  const { min, max } = num;
+  return Number.isSafeInteger(min) && Number.isSafeInteger(max) && min <= max;
+}
+// números já sorteados que estão dentro do intervalo atual
+function usadosNoIntervalo() {
+  return new Set(num.hist.filter(n => n >= num.min && n <= num.max));
+}
+
+function renderNum() {
+  const ok = intervaloValido();
+  const total = ok ? num.max - num.min + 1 : 0;
+  const usados = ok ? usadosNoIntervalo().size : 0;
+  const restam = num.rep ? total : total - usados;
+
+  if (!ok) {
+    $("nInfo").textContent = "Confira o intervalo: o primeiro número precisa ser menor ou igual ao segundo.";
+    $("nProg").style.width = "0%";
+  } else if (num.rep) {
+    $("nInfo").textContent = `${fmt(total)} números possíveis (de ${fmt(num.min)} a ${fmt(num.max)}) · podem repetir`;
+    $("nProg").style.width = "0%";
+  } else {
+    $("nInfo").textContent = `${fmt(restam)} de ${fmt(total)} números ainda no sorteio`;
+    $("nProg").style.width = (usados / total * 100) + "%";
+  }
+  $("sortearN").disabled = !ok || restam <= 0;
+
+  const h = $("histN");
+  h.innerHTML = "";
+  if (!num.hist.length) { h.innerHTML = '<div class="empty"><span>🎟️</span>Nenhum número sorteado ainda</div>'; return; }
+  num.hist.forEach(n => { const li = document.createElement("li"); li.textContent = fmt(n); h.appendChild(li); });
+}
+
+function lerCampos() {
+  const a = parseInt($("nMin").value, 10), b = parseInt($("nMax").value, 10);
+  num.min = a; num.max = b;
+  num.rep = $("nRep").checked;
+  salvar(); renderNum();
+}
+["nMin", "nMax"].forEach(id => $(id).addEventListener("input", lerCampos));
+$("nRep").addEventListener("change", lerCampos);
+["nMin", "nMax"].forEach(id => $(id).addEventListener("keydown", e => { if (e.key === "Enter") $("sortearN").click(); }));
+
+function aleatorioNoIntervalo() {
+  const { min, max } = num;
+  const total = max - min + 1;
+  const rnd = () => min + Math.floor(Math.random() * total);
+  if (num.rep) return rnd();
+  const usados = usadosNoIntervalo();
+  if (usados.size >= total) return null;
+  if (usados.size < total / 2) {
+    let x; do { x = rnd(); } while (usados.has(x));
+    return x;
+  }
+  const livres = [];
+  for (let n = min; n <= max; n++) if (!usados.has(n)) livres.push(n);
+  return livres[Math.floor(Math.random() * livres.length)];
+}
+
+$("sortearN").onclick = () => {
+  if (!intervaloValido()) return;
+  const final = aleatorioNoIntervalo();
+  if (final === null) return;
+  const r = $("resultN");
+  r.classList.remove("win"); r.classList.add("spin");
+  $("sortearN").disabled = true;
+  let t = 0;
+  const iv = setInterval(() => {
+    r.textContent = fmt(num.min + Math.floor(Math.random() * (num.max - num.min + 1)));
+    if (++t >= 18) {
+      clearInterval(iv);
+      r.classList.remove("spin");
+      r.textContent = fmt(final);
+      void r.offsetWidth;
+      r.classList.add("win");
+      num.hist.push(final);
+      salvar(); renderNum(); confete();
+    }
+  }, 75);
+};
+
+$("resetN").onclick = () => {
+  num.hist = []; const r = $("resultN"); r.textContent = "?"; r.classList.remove("win"); salvar(); renderNum();
+};
+
+/* ---------- confete ---------- */
 const cv = $("fx"), ctx = cv.getContext("2d");
 let parts = [], anim = null;
 function resize() { cv.width = innerWidth; cv.height = innerHeight; }
@@ -368,7 +547,13 @@ function loop() {
   if (!anim) ctx.clearRect(0, 0, cv.width, cv.height);
 }
 
+/* ---------- início ---------- */
+$("nMin").value = Number.isFinite(num.min) ? num.min : "";
+$("nMax").value = Number.isFinite(num.max) ? num.max : "";
+$("nRep").checked = !!num.rep;
 render();
+renderNum();
+setModo(modo);
 </script>
 </body>
 </html>
