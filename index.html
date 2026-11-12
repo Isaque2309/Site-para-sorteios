@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#6c5ce7">
-<title>Sorteio de Nomes e Números</title>
+<title>Sorteio de Nomes, Números e Chaveamento</title>
 <meta name="description" content="Ninguém repete. Sorte pra todo mundo!">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sorteio de Nomes e Números">
+<meta property="og:title" content="Sorteio de Nomes, Números e Chaveamento">
 <meta property="og:description" content="Ninguém repete. Sorte pra todo mundo!">
 <meta property="og:image" content="https://sorteios-tau.vercel.app/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -211,6 +211,63 @@ ol.nums li{font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
 .empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px 0 8px}
 .empty span{display:block;font-size:1.8rem;margin-bottom:4px;opacity:.7}
 
+/* chaveamento */
+.tabs button small{display:block;font-size:.7rem;font-weight:500;opacity:.85;margin-top:1px}
+.tabs.sub{box-shadow:none;margin-top:14px;background:var(--input)}
+.tabs.sub button{padding:10px 8px;font-size:.86rem}
+#vChave>.card:not(#cOut),#vChave>.tabs{width:100%;max-width:600px;align-self:center}
+main{transition:max-width .25s}
+main.wide{max-width:1280px}
+.sh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 10px}
+.sh:first-of-type{margin-top:4px}
+.sl{font-size:.8rem;font-weight:700;color:var(--accent)}
+.tchips{display:flex;flex-wrap:wrap;gap:8px}
+.tc{display:flex;align-items:center;gap:8px;padding:7px 13px 7px 8px;border-radius:999px;background:var(--chip);border:1.5px solid var(--border);font-size:.84rem;font-weight:600;cursor:pointer;user-select:none;transition:transform .15s,box-shadow .15s,background .2s}
+.tc:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.tc:focus-visible{outline:3px solid rgba(108,92,231,.45);outline-offset:2px}
+.tc i{font-style:normal;font-size:.68rem;font-weight:800;color:var(--accent);min-width:20px;text-align:center;padding:2px 6px;border-radius:7px}
+.tc.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(108,92,231,.32)}
+.tc.on i{background:rgba(0,0,0,.24);color:#fff}
+.tc.on::after{content:"✓";font-size:.8rem}
+/* chave simétrica */
+.scroll{overflow-x:auto;padding:70px 6px 14px;scrollbar-width:thin;scrollbar-color:var(--accent2) transparent}
+.tree{--ln:var(--accent2);display:flex;align-items:center;width:max-content;margin:0 auto}
+.half{display:flex}
+.nd{display:flex;align-items:center;padding:5px 0}
+.rt .nd{flex-direction:row-reverse}
+.kids{display:flex;flex-direction:column;position:relative;margin-right:16px}
+.kids::after{content:"";position:absolute;right:-8px;top:25%;bottom:25%;border-left:2px solid var(--ln)}
+.rt .kids{margin-right:0;margin-left:16px}
+.rt .kids::after{right:auto;left:-8px}
+.mt{position:relative;width:142px;flex:none;background:var(--chip);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 8px rgba(108,92,231,.08)}
+.mt.out::after{content:"";position:absolute;top:50%;margin-top:-1px;left:100%;width:8px;border-top:2px solid var(--ln)}
+.mt.has::before{content:"";position:absolute;top:50%;margin-top:-1px;right:100%;width:8px;border-top:2px solid var(--ln)}
+.rt .mt.out::after{left:auto;right:100%}
+.rt .mt.has::before{right:auto;left:100%}
+.mt.root::after{width:14px}
+.mid{padding:0 14px;position:relative}
+.fin{position:relative}
+.fin h4{position:absolute;bottom:100%;left:0;right:0;margin:0 0 6px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fin .mt{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,92,231,.14)}
+.fin .champ{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin:0 0 30px;white-space:nowrap;animation:none;padding:9px 16px;font-size:.95rem}
+.tm{height:34px;line-height:34px;padding:0 10px;font-size:.82rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .15s}
+.tm:first-child{border-radius:11px 11px 0 0}
+.tm:last-child{border-radius:0 0 11px 11px}
+.tm+.tm{border-top:1px solid var(--border)}
+.tm.clk{cursor:pointer}
+.tm.clk:hover{background:rgba(108,92,231,.14)}
+.tm.w{background:linear-gradient(90deg,rgba(0,184,148,.28),rgba(0,184,148,.06));font-weight:700}
+.tm.l{opacity:.45;text-decoration:line-through}
+.tm.bye,.tm.tbd{color:var(--muted);font-style:italic;font-size:.76rem}
+.champ{text-align:center;color:#fff;font-weight:800;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--pink));box-shadow:0 8px 22px rgba(108,92,231,.35)}
+.grp{background:var(--chip);border:1px solid var(--border);border-radius:18px;padding:14px 16px;margin-top:12px}
+.grp:first-child{margin-top:0}
+.grp h3{margin:0 0 10px;font-size:.95rem;font-weight:700;color:var(--accent)}
+.grp ul{margin:0 0 10px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.grp li{padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:600;background:rgba(108,92,231,.12);color:var(--text)}
+.rod{font-size:.84rem;color:var(--muted);margin:5px 0;line-height:1.5}
+.rod b{color:var(--text);margin-right:4px}
+
 footer{text-align:center;color:var(--muted);font-size:.75rem;opacity:.7}
 canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
 
@@ -234,6 +291,7 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
   <nav class="tabs" role="tablist">
     <button id="tabNomes" class="on" role="tab">✍️ Nomes</button>
     <button id="tabNum" role="tab">🔢 Números</button>
+    <button id="tabChave" role="tab">🏆 Chaves</button>
   </nav>
 
   <!-- ============ NOMES ============ -->
@@ -303,6 +361,64 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
     </section>
   </div>
 
+  <!-- ============ CHAVEAMENTO ============ -->
+  <div class="view hidden" id="vChave">
+    <nav class="tabs">
+      <button id="mFutsal" class="on">⚽ Futsal</button>
+      <button id="mVolei">🏐 Vôlei</button>
+    </nav>
+    <nav class="tabs">
+      <button id="tManha" class="on">☀️ Manhã<small>Ensino Médio</small></button>
+      <button id="tTarde">🌤️ Tarde<small>Fundamental II</small></button>
+    </nav>
+
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">🏫</span>Turmas<span class="count" id="cCount">0</span></h2>
+        <div style="display:flex;gap:6px">
+          <button class="sec" id="cTodas">Todas</button>
+          <button class="sec danger" id="cNenhuma">Limpar</button>
+        </div>
+      </div>
+      <div id="cSeries"></div>
+      <p class="muted" id="cInfo"></p>
+    </section>
+
+    <section class="card">
+      <div class="top">
+        <h2><span class="ico">⚙️</span>Formato</h2>
+      </div>
+      <nav class="tabs sub" style="margin-top:0">
+        <button id="fMata" class="on">⚔️ Mata-mata</button>
+        <button id="fGrupos">👥 Grupos</button>
+      </nav>
+      <div class="field hidden" id="gField" style="margin-top:14px">
+        <label for="cGrupos">Quantos grupos</label>
+        <input id="cGrupos" type="number" inputmode="numeric" min="1" step="1" value="2">
+      </div>
+      <p class="muted" id="fInfo"></p>
+    </section>
+
+    <section class="card stage">
+      <div class="label">O chaveamento é...</div>
+      <div class="res" id="resultC" style="font-size:clamp(1.5rem,7vw,2.3rem)">?</div>
+      <button class="big" id="sortearC">✨ Sortear chaveamento!</button>
+    </section>
+
+    <section class="card hidden" id="cOut">
+      <div class="top">
+        <h2><span class="ico">🏆</span><span id="cOutTitulo">Chaveamento</span></h2>
+        <button class="sec" id="cCopy">📋 Copiar imagem</button>
+      </div>
+      <div id="cBody"></div>
+      <p class="muted" id="cDica"></p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <button class="sec danger" id="cZerar">↺ Zerar resultados</button>
+        <button class="sec danger" id="cReset">🗑️ Resetar chaveamento</button>
+      </div>
+    </section>
+  </div>
+
   <footer>Feito com 💜 e um pouquinho de sorte</footer>
 </main>
 
@@ -310,17 +426,54 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
 let nomes = [], sorteados = [];
 let modo = "nomes";
 let num = { min: 1, max: 60, hist: [], rep: false };
+const TURMAS = [
+  { serie: 1, nome: "1EM - Turma A", curto: "1EM A", b: "A" },
+  { serie: 1, nome: "1EM - Turma B", curto: "1EM B", b: "B" },
+  { serie: 1, nome: "1EM - Turma C", curto: "1EM C", b: "C" },
+  { serie: 1, nome: "1EM - Turma D", curto: "1EM D", b: "D" },
+  { serie: 1, nome: "1EM - Turma E", curto: "1EM E", b: "E" },
+  { serie: 2, nome: "2EM - Turma A", curto: "2EM A", b: "A" },
+  { serie: 2, nome: "2EM - Turma B", curto: "2EM B", b: "B" },
+  { serie: 2, nome: "2EM - Turma C (D.S)", curto: "2EM C (D.S)", b: "C-D.S" },
+  { serie: 2, nome: "2EM - Turma D (D.S)", curto: "2EM D (D.S)", b: "D-D.S" },
+  { serie: 2, nome: "2EM - ADM (Administração)", curto: "2EM ADM", b: "ADM" },
+  { serie: 3, nome: "3EM - Turma A", curto: "3EM A", b: "A" },
+  { serie: 3, nome: "3EM - Turma B", curto: "3EM B", b: "B" },
+  { serie: 3, nome: "3EM - Turma C", curto: "3EM C", b: "C" },
+  { serie: 3, nome: "3EM - Turma D", curto: "3EM D", b: "D" },
+  { serie: 3, nome: "3EM - D.S (Dev. de Sistemas)", curto: "3EM D.S", b: "D.S" },
+  { serie: 3, nome: "3EM - ADM (Administração)", curto: "3EM ADM", b: "ADM" }
+];
+// fundamental II (tarde)
+[[6, "ABCD"], [7, "ABC"], [8, "ABCD"], [9, "ABCD"]].forEach(([sr, ls]) => [...ls].forEach(l =>
+  TURMAS.push({ serie: sr, nome: `${sr}º ANO - Turma ${l}`, curto: `${sr}º ${l}`, b: l, turno: "tarde" })));
+TURMAS.forEach(t => { if (!t.turno) t.turno = "manha"; });
+const SERIES = { 1: "1º ANOS EM", 2: "2º ANOS EM", 3: "3º ANOS EM", 6: "6º ANOS EF", 7: "7º ANOS EF", 8: "8º ANOS EF", 9: "9º ANOS EF" };
+const TURNOS = {
+  manha: { nome: "Manhã", sub: "Ensino Médio", series: [1, 2, 3] },
+  tarde: { nome: "Tarde", sub: "Fundamental II", series: [6, 7, 8, 9] }
+};
+const novaMod = () => ({ sel: [], formato: "mata", grupos: 2, titulo: "", sorteio: null });
+let ch = { mod: "futsal", turno: "manha", d: { futsal_manha: novaMod(), futsal_tarde: novaMod(), volei_manha: novaMod(), volei_tarde: novaMod() } };
+const cur = () => ch.d[ch.mod + "_" + ch.turno];
+const curto = n => (TURMAS.find(t => t.nome === n) || {}).curto || n;
 const $ = id => document.getElementById(id);
 
 try {
   const s = JSON.parse(localStorage.getItem("sorteio") || "null");
   if (s) {
     nomes = s.nomes || []; sorteados = s.sorteados || [];
-    if (s.modo === "numeros") modo = "numeros";
+    if (s.modo === "numeros" || s.modo === "chave") modo = s.modo;
     if (s.num) num = Object.assign(num, s.num);
+    if (s.ch && s.ch.d) {
+      ch.mod = s.ch.mod === "volei" ? "volei" : "futsal";
+      ch.turno = s.ch.turno === "tarde" ? "tarde" : "manha";
+      // salvos antes dos turnos (chaves "futsal"/"volei") eram do ensino médio = manhã
+      for (const k of Object.keys(ch.d)) { const [m, t] = k.split("_"); ch.d[k] = Object.assign(novaMod(), s.ch.d[k] || (t === "manha" ? s.ch.d[m] : null) || {}); }
+    }
   }
 } catch (e) {}
-const salvar = () => { try { localStorage.setItem("sorteio", JSON.stringify({ nomes, sorteados, modo, num })); } catch (e) {} };
+const salvar = () => { try { localStorage.setItem("sorteio", JSON.stringify({ nomes, sorteados, modo, num, ch })); } catch (e) {} };
 
 const GRADS = [
   "linear-gradient(135deg,#6c5ce7,#a29bfe)", "linear-gradient(135deg,#fd79a8,#e84393)",
@@ -333,16 +486,22 @@ const fmt = n => n.toLocaleString("pt-BR");
 /* ---------- abas ---------- */
 function setModo(m) {
   modo = m;
-  const n = m === "nomes";
-  $("vNomes").classList.toggle("hidden", !n);
-  $("vNum").classList.toggle("hidden", n);
-  $("tabNomes").classList.toggle("on", n);
-  $("tabNum").classList.toggle("on", !n);
-  $("titulo").textContent = n ? "Sorteio de Nomes" : "Sorteio de Números";
+  const mapa = {
+    nomes:   ["vNomes", "tabNomes", "Sorteio de Nomes"],
+    numeros: ["vNum", "tabNum", "Sorteio de Números"],
+    chave:   ["vChave", "tabChave", "Chaveamento"]
+  };
+  for (const k in mapa) {
+    $(mapa[k][0]).classList.toggle("hidden", k !== m);
+    $(mapa[k][1]).classList.toggle("on", k === m);
+  }
+  $("titulo").textContent = mapa[m][2];
+  larguraChave();
   salvar();
 }
 $("tabNomes").onclick = () => setModo("nomes");
 $("tabNum").onclick = () => setModo("numeros");
+$("tabChave").onclick = () => setModo("chave");
 
 /* ---------- NOMES ---------- */
 function adicionar(texto) {
@@ -516,6 +675,424 @@ $("resetN").onclick = () => {
   num.hist = []; const r = $("resultN"); r.textContent = "?"; r.classList.remove("win"); salvar(); renderNum();
 };
 
+/* ---------- CHAVEAMENTO ---------- */
+const embaralhar = a => {
+  const r = a.slice();
+  for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; }
+  return r;
+};
+// ordem padrão de chave: 1 x último, 2 x penúltimo... (folgas espalhadas, nunca folga x folga)
+function seedOrder(size) {
+  let o = [1];
+  while (o.length < size) { const len = o.length * 2; o = o.flatMap(x => [x, len + 1 - x]); }
+  return o;
+}
+// todos contra todos (método do círculo)
+function roundRobin(times) {
+  const t = times.slice(); if (t.length % 2) t.push(null);
+  const n = t.length, rs = [];
+  for (let r = 0; r < n - 1; r++) {
+    const jogos = [];
+    for (let i = 0; i < n / 2; i++) { const a = t[i], b = t[n - 1 - i]; if (a && b) jogos.push([a, b]); }
+    rs.push(jogos);
+    t.splice(1, 0, t.pop());
+  }
+  return rs;
+}
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+const nomeMod = () => ch.mod === "futsal" ? "⚽ Futsal" : "🏐 Vôlei";
+const gruposEfetivos = (d = cur()) => { return Math.min(Math.max(1, parseInt(d.grupos, 10) || 1), Math.max(1, Math.floor(d.sel.length / 2))); };
+const temResultados = () => { const s = cur().sorteio; return !!s && s.tipo === "mata" && s.win.some(r => r.some(Boolean)); };
+
+function definir(nome, on) {
+  const d = cur(), i = d.sel.indexOf(nome);
+  if (on && i < 0) d.sel.push(nome);
+  if (!on && i >= 0) d.sel.splice(i, 1);
+}
+function trocarMod(m, t = ch.turno) {
+  ch.mod = m; ch.turno = t;
+  [["cZerar", "↺ Zerar resultados"], ["cReset", "🗑️ Resetar chaveamento"]].forEach(([i, tx]) => { $(i).classList.remove("confirm"); $(i).textContent = tx; });
+  $("cGrupos").value = cur().grupos || 2;
+  $("resultC").textContent = "?"; $("resultC").classList.remove("win");
+  salvar(); renderChave();
+}
+function larguraChave() {
+  const s = cur().sorteio;
+  const largo = modo === "chave" && !!s && s.tipo === "mata" && s.slots.length >= 8;
+  document.querySelector("main").classList.toggle("wide", largo);
+}
+
+function gerarChave(d = cur()) {
+  const n = d.sel.length, emb = embaralhar(d.sel), titulo = "";
+  if (d.formato === "grupos") {
+    const G = gruposEfetivos(d), grupos = Array.from({ length: G }, () => []);
+    emb.forEach((t, i) => grupos[i % G].push(t));
+    return { tipo: "grupos", titulo, grupos };
+  }
+  let size = 2; while (size < n) size *= 2;
+  const slots = seedOrder(size).map(x => x <= n ? emb[x - 1] : null);
+  const win = []; for (let m = size / 2; m >= 1; m /= 2) win.push(Array(m).fill(null));
+  return { tipo: "mata", titulo, slots, win };
+}
+
+function renderChave() {
+  const d = cur(), n = d.sel.length;
+  $("mFutsal").classList.toggle("on", ch.mod === "futsal");
+  $("mVolei").classList.toggle("on", ch.mod === "volei");
+  $("tManha").classList.toggle("on", ch.turno === "manha");
+  $("tTarde").classList.toggle("on", ch.turno === "tarde");
+
+  const box = $("cSeries"); box.innerHTML = "";
+  TURNOS[ch.turno].series.forEach(sr => {
+    const lista = TURMAS.filter(t => t.serie === sr);
+    const todas = lista.every(t => d.sel.includes(t.nome));
+    const head = el("div", "sh"); head.append(el("span", "sl", "🎓 Turmas de " + SERIES[sr] + ":"));
+    const bt = el("button", "sec", todas ? "Desmarcar" : "Marcar todas");
+    bt.onclick = () => { lista.forEach(t => definir(t.nome, !todas)); salvar(); renderChave(); };
+    head.append(bt);
+    const row = el("div", "tchips");
+    lista.forEach(t => {
+      const on = d.sel.includes(t.nome);
+      const c = el("div", "tc" + (on ? " on" : ""));
+      c.setAttribute("role", "button"); c.setAttribute("aria-pressed", on); c.tabIndex = 0;
+      c.append(el("i", null, t.b), el("span", null, t.nome));
+      const tog = () => { definir(t.nome, !on); salvar(); renderChave(); };
+      c.onclick = tog;
+      c.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tog(); } };
+      row.append(c);
+    });
+    box.append(head, row);
+  });
+
+  $("cCount").textContent = n;
+  $("cInfo").textContent = n === 0 ? "Marque as turmas que vão jogar " + (ch.mod === "futsal" ? "futsal" : "vôlei") + " (mínimo 2)."
+    : n < 2 ? "Falta pelo menos mais uma turma." : `${n} turmas participando.`;
+
+  const g = d.formato === "grupos";
+  $("fMata").classList.toggle("on", !g);
+  $("fGrupos").classList.toggle("on", g);
+  $("gField").classList.toggle("hidden", !g);
+  if (n < 2) $("fInfo").textContent = "";
+  else if (g) {
+    const G = gruposEfetivos();
+    $("fInfo").textContent = `${G} ${G === 1 ? "grupo" : "grupos"} · cerca de ${Math.ceil(n / G)} turmas por grupo, todos contra todos dentro do grupo.`;
+  } else {
+    let size = 2; while (size < n) size *= 2;
+    const f = size - n;
+    $("fInfo").textContent = f ? `${f} ${f === 1 ? "turma" : "turmas"} com folga na primeira fase (sorteadas também).` : "Sem folgas: todo mundo joga na primeira fase.";
+  }
+  $("sortearC").disabled = n < 2;
+  renderSaida();
+}
+
+function renderSaida() {
+  const s = cur().sorteio;
+  $("cOut").classList.toggle("hidden", !s);
+  larguraChave();
+  if (!s) return;
+  $("cZerar").classList.toggle("hidden", s.tipo !== "mata");
+  $("cZerar").disabled = !temResultados();
+  $("cOutTitulo").textContent = nomeMod() + " · " + TURNOS[ch.turno].nome + (s.tipo === "mata" ? " — Mata-mata" : " — Grupos");
+  const body = $("cBody"); body.innerHTML = "";
+
+  if (s.tipo === "grupos") {
+    s.grupos.forEach((g, gi) => {
+      const bx = el("div", "grp");
+      bx.append(el("h3", null, "Grupo " + String.fromCharCode(65 + gi)));
+      const ul = el("ul"); g.forEach(t => ul.append(el("li", null, t))); bx.append(ul);
+      roundRobin(g).forEach((jogos, ri) => {
+        const dv = el("div", "rod"); dv.append(el("b", null, "Rodada " + (ri + 1)));
+        dv.append(document.createTextNode(jogos.map(j => curto(j[0]) + " × " + curto(j[1])).join("  ·  ")));
+        bx.append(dv);
+      });
+      body.append(bx);
+    });
+    $("cDica").textContent = "";
+    return;
+  }
+
+  const tam = s.slots.length, nr = s.win.length;
+  const equipe = (r, i, lado) => r === 0 ? s.slots[2 * i + lado] : vencedor(r - 1, 2 * i + lado);
+  function vencedor(r, i) {
+    const a = equipe(r, i, 0), b = equipe(r, i, 1);
+    if (r === 0) { if (a && !b) return a; if (b && !a) return b; }
+    if (!a || !b) return null;
+    const w = s.win[r][i];
+    return w === "a" ? a : w === "b" ? b : null;
+  }
+  function escolher(r, i, lado) {
+    const antes = vencedor(nr - 1, 0);
+    s.win[r][i] = s.win[r][i] === lado ? null : lado;
+    let j = i; for (let k = r + 1; k < nr; k++) { j >>= 1; s.win[k][j] = null; }
+    salvar(); renderSaida();
+    if (!antes && vencedor(nr - 1, 0)) confete();
+  }
+  function caixa(r, i, cls) {
+    const a = equipe(r, i, 0), b = equipe(r, i, 1), w = vencedor(r, i);
+    const bye = r === 0 && (!a || !b);
+    const m = el("div", "mt" + (cls ? " " + cls : ""));
+    [[a, "a"], [b, "b"]].forEach(([t, lado]) => {
+      const row = el("div", "tm");
+      if (!t) { row.classList.add(r === 0 ? "bye" : "tbd"); row.textContent = r === 0 ? "folga" : "a definir"; }
+      else {
+        row.textContent = curto(t); row.title = t;
+        if (w) row.classList.add(w === t ? "w" : "l");
+        if (a && b && !bye) { row.classList.add("clk"); row.onclick = () => escolher(r, i, lado); }
+      }
+      m.append(row);
+    });
+    return m;
+  }
+  // monta recursivamente uma metade da chave: [filhos] -> partida
+  function no(r, i, raiz) {
+    const nd = el("div", "nd");
+    const mt = caixa(r, i, "out" + (raiz ? " root" : "") + (r > 0 ? " has" : ""));
+    if (r > 0) { const k = el("div", "kids"); k.append(no(r - 1, 2 * i), no(r - 1, 2 * i + 1)); nd.append(k); }
+    nd.append(mt);
+    return nd;
+  }
+
+  const tree = el("div", "tree");
+  if (nr >= 2) { const lf = el("div", "half lf"); lf.append(no(nr - 2, 0, true)); tree.append(lf); }
+  const mid = el("div", "mid"), fin = el("div", "fin");
+  fin.append(el("h4", null, "Final"), caixa(nr - 1, 0, ""));
+  const campeao = vencedor(nr - 1, 0);
+  if (campeao) fin.append(el("div", "champ", "🏆 Campeão: " + curto(campeao)));
+  mid.append(fin); tree.append(mid);
+  if (nr >= 2) { const rt = el("div", "half rt"); rt.append(no(nr - 2, 1, true)); tree.append(rt); }
+  const sc = el("div", "scroll"); sc.append(tree); body.append(sc);
+  $("cDica").textContent = "Toque em uma turma pra marcar quem venceu — ela avança sozinha. Toque de novo pra desmarcar.";
+}
+
+$("mFutsal").onclick = () => trocarMod("futsal");
+$("mVolei").onclick = () => trocarMod("volei");
+$("tManha").onclick = () => trocarMod(ch.mod, "manha");
+$("tTarde").onclick = () => trocarMod(ch.mod, "tarde");
+$("cTodas").onclick = () => { TURMAS.filter(t => t.turno === ch.turno).forEach(t => definir(t.nome, true)); salvar(); renderChave(); };
+$("cNenhuma").onclick = () => { cur().sel = []; salvar(); renderChave(); };
+$("cGrupos").addEventListener("input", () => { cur().grupos = parseInt($("cGrupos").value, 10) || 1; salvar(); renderChave(); });
+$("fMata").onclick = () => { cur().formato = "mata"; salvar(); renderChave(); };
+$("fGrupos").onclick = () => { cur().formato = "grupos"; salvar(); renderChave(); };
+
+$("sortearC").onclick = () => {
+  const d = cur();
+  if (d.sel.length < 2) return;
+  if (temResultados() && !confirm("Já existem resultados marcados. Sortear de novo apaga tudo. Continuar?")) return;
+  const r = $("resultC"), nomes = d.sel.map(curto), chave = ch.mod + "_" + ch.turno;
+  r.classList.remove("win"); r.classList.add("spin");
+  $("sortearC").disabled = true;
+  let t = 0;
+  const iv = setInterval(() => {
+    r.textContent = nomes[Math.floor(Math.random() * nomes.length)];
+    if (++t >= 18) {
+      clearInterval(iv);
+      r.classList.remove("spin");
+      r.textContent = "Chaves sorteadas!";
+      void r.offsetWidth;
+      r.classList.add("win");
+      ch.d[chave].sorteio = gerarChave(ch.d[chave]);
+      salvar(); renderChave(); confete();
+      $("cOut").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, 75);
+};
+// botões que pedem confirmação com um segundo clique
+function duploClique(id, rotulo, acao) {
+  const b = $(id); let t = null;
+  b.onclick = () => {
+    if (!b.classList.contains("confirm")) {
+      b.classList.add("confirm"); b.textContent = "Certeza? Clica de novo";
+      t = setTimeout(() => { b.classList.remove("confirm"); b.textContent = rotulo; }, 3500);
+      return;
+    }
+    clearTimeout(t); b.classList.remove("confirm"); b.textContent = rotulo; acao();
+  };
+}
+// mantém o sorteio e apaga só os vencedores marcados
+duploClique("cZerar", "↺ Zerar resultados", () => {
+  const s = cur().sorteio; if (!s || s.tipo !== "mata") return;
+  s.win = s.win.map(r => r.map(() => null));
+  salvar(); renderChave();
+});
+// apaga o sorteio inteiro (as turmas marcadas continuam)
+duploClique("cReset", "🗑️ Resetar chaveamento", () => {
+  cur().sorteio = null;
+  const r = $("resultC"); r.textContent = "?"; r.classList.remove("win");
+  salvar(); renderChave();
+});
+/* ---------- imagem do chaveamento ---------- */
+const FONTE = 'Poppins, system-ui, -apple-system, "Segoe UI", sans-serif';
+function rr(c, x, y, w, h, r) {
+  c.beginPath(); c.moveTo(x + r, y);
+  c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+  c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+}
+function cabem(c, t, w) {
+  if (c.measureText(t).width <= w) return t;
+  while (t.length > 1 && c.measureText(t + "…").width > w) t = t.slice(0, -1);
+  return t + "…";
+}
+function chaveFns(s) {
+  const equipe = (r, i, lado) => r === 0 ? s.slots[2 * i + lado] : vencedor(r - 1, 2 * i + lado);
+  function vencedor(r, i) {
+    const a = equipe(r, i, 0), b = equipe(r, i, 1);
+    if (r === 0) { if (a && !b) return a; if (b && !a) return b; }
+    if (!a || !b) return null;
+    const w = s.win[r][i];
+    return w === "a" ? a : w === "b" ? b : null;
+  }
+  return { equipe, vencedor };
+}
+
+const HEAD = 72, PADI = 36;
+function layoutMata(s) {
+  const tam = s.slots.length, nr = s.win.length;
+  const BW = 172, BH = 68, RH = 34, GV = 16, CG = 38, TOP = 78;
+  const L = Math.max(tam / 4, 1);
+  const W = Math.max(2 * PADI + (nr - 1) * 2 * (BW + CG) + BW, 560);
+  const H = HEAD + TOP + L * (BH + GV) - GV + PADI;
+  const { equipe, vencedor } = chaveFns(s);
+  const base = HEAD + TOP + BH / 2;
+  const xOf = (r, i) => {
+    if (r === nr - 1) return (W - BW) / 2;
+    const cnt = tam / 2 ** (r + 1);
+    return i >= cnt / 2 ? W - PADI - BW - r * (BW + CG) : PADI + r * (BW + CG);
+  };
+  const yc = (r, i) => {
+    if (nr === 1) return base;
+    if (r === 0) { const half = tam / 4, j = i < half ? i : i - half; return HEAD + TOP + j * (BH + GV) + BH / 2; }
+    return (yc(r - 1, 2 * i) + yc(r - 1, 2 * i + 1)) / 2;
+  };
+  function draw(c) {
+    // ligações
+    c.strokeStyle = "#a29bfe"; c.lineWidth = 2; c.lineJoin = "round";
+    const link = (rc, ic, rp, ip) => {
+      const xc = xOf(rc, ic), xp = xOf(rp, ip), y1 = yc(rc, ic), y2 = yc(rp, ip);
+      const x1 = xc < xp ? xc + BW : xc, x2 = xc < xp ? xp : xp + BW, xm = (x1 + x2) / 2;
+      c.beginPath(); c.moveTo(x1, y1); c.lineTo(xm, y1); c.lineTo(xm, y2); c.lineTo(x2, y2); c.stroke();
+    };
+    for (let r = 1; r < nr; r++) for (let i = 0; i < tam / 2 ** (r + 1); i++) { link(r - 1, 2 * i, r, i); link(r - 1, 2 * i + 1, r, i); }
+    // partidas
+    for (let r = 0; r < nr; r++) for (let i = 0; i < tam / 2 ** (r + 1); i++) {
+      const a = equipe(r, i, 0), b = equipe(r, i, 1), w = vencedor(r, i);
+      const x = xOf(r, i), y = yc(r, i) - BH / 2, final = r === nr - 1;
+      c.save(); c.shadowColor = "rgba(108,92,231,.20)"; c.shadowBlur = 10; c.shadowOffsetY = 3;
+      rr(c, x, y, BW, BH, 12); c.fillStyle = "#ffffff"; c.fill(); c.restore();
+      c.save(); rr(c, x, y, BW, BH, 12); c.clip();
+      [a, b].forEach((t, k) => { if (t && w === t) { c.fillStyle = "rgba(0,184,148,.24)"; c.fillRect(x, y + k * RH, BW, RH); } });
+      c.restore();
+      rr(c, x, y, BW, BH, 12); c.strokeStyle = final ? "#6c5ce7" : "#d6d0fa"; c.lineWidth = final ? 2 : 1.2; c.stroke();
+      c.beginPath(); c.moveTo(x, y + RH); c.lineTo(x + BW, y + RH); c.strokeStyle = "#e4e0fb"; c.lineWidth = 1; c.stroke();
+      [a, b].forEach((t, k) => {
+        const ty = y + k * RH + RH / 2 + 1;
+        c.textBaseline = "middle"; c.textAlign = "left";
+        if (!t) { c.font = "italic 500 12px " + FONTE; c.fillStyle = "#8a8fa8"; c.fillText(r === 0 ? "folga" : "a definir", x + 12, ty); return; }
+        const perdeu = w && w !== t;
+        c.font = (w === t ? "700 " : "600 ") + "14px " + FONTE;
+        c.fillStyle = perdeu ? "#a5a9bd" : "#1d1f2b";
+        const txt = cabem(c, curto(t), BW - 24);
+        c.fillText(txt, x + 12, ty);
+        if (perdeu) { const tw = c.measureText(txt).width; c.beginPath(); c.moveTo(x + 12, ty); c.lineTo(x + 12 + tw, ty); c.strokeStyle = "#a5a9bd"; c.lineWidth = 1.2; c.stroke(); }
+      });
+      if (final) {
+        c.textAlign = "center"; c.textBaseline = "alphabetic";
+        c.font = "700 11px " + FONTE; c.fillStyle = "#6b7089"; c.fillText("F I N A L", x + BW / 2, y - 12);
+        const campeao = vencedor(nr - 1, 0);
+        if (campeao) {
+          const txt = "🏆 Campeão: " + curto(campeao);
+          c.font = "800 15px " + FONTE;
+          const pw = c.measureText(txt).width + 36, px = x + BW / 2 - pw / 2, py = y - 62;
+          const g = c.createLinearGradient(px, py, px + pw, py); g.addColorStop(0, "#6c5ce7"); g.addColorStop(1, "#fd79a8");
+          rr(c, px, py, pw, 34, 17); c.fillStyle = g; c.fill();
+          c.fillStyle = "#fff"; c.textBaseline = "middle"; c.fillText(txt, x + BW / 2, py + 18);
+        }
+      }
+    }
+  }
+  return { W, H, draw };
+}
+
+function layoutGrupos(s) {
+  const G = s.grupos.length, cols = Math.min(G, 3), CW = 330, GAP = 22;
+  const W = Math.max(2 * PADI + cols * CW + (cols - 1) * GAP, 480);
+  const x0 = (W - (cols * CW + (cols - 1) * GAP)) / 2;
+  const info = s.grupos.map(g => ({ g, rod: roundRobin(g) }));
+  const alt = o => 50 + o.g.length * 24 + 12 + o.rod.reduce((acc, jogos) => acc + 26 + jogos.length * 22, 0) + 10;
+  const linhas = [];
+  for (let i = 0; i < G; i += cols) { const grp = info.slice(i, i + cols); linhas.push({ grp, h: Math.max(...grp.map(alt)) }); }
+  const H = HEAD + 10 + linhas.reduce((a, l) => a + l.h + GAP, 0) + PADI - GAP;
+  function draw(c) {
+    let y = HEAD + 10;
+    linhas.forEach(l => {
+      l.grp.forEach((o, k) => {
+        const x = x0 + k * (CW + GAP), gi = info.indexOf(o);
+        c.save(); c.shadowColor = "rgba(108,92,231,.18)"; c.shadowBlur = 10; c.shadowOffsetY = 3;
+        rr(c, x, y, CW, l.h, 16); c.fillStyle = "#fff"; c.fill(); c.restore();
+        rr(c, x, y, CW, l.h, 16); c.strokeStyle = "#d6d0fa"; c.lineWidth = 1.2; c.stroke();
+        c.textAlign = "left"; c.textBaseline = "middle";
+        c.font = "700 17px " + FONTE; c.fillStyle = "#6c5ce7"; c.fillText("Grupo " + String.fromCharCode(65 + gi), x + 18, y + 26);
+        let yy = y + 56;
+        o.g.forEach(t => { c.font = "600 14px " + FONTE; c.fillStyle = "#1d1f2b"; c.fillText(cabem(c, "• " + t, CW - 36), x + 18, yy); yy += 24; });
+        yy += 12;
+        o.rod.forEach((jogos, ri) => {
+          c.font = "700 12px " + FONTE; c.fillStyle = "#6b7089"; c.fillText("RODADA " + (ri + 1), x + 18, yy); yy += 26;
+          jogos.forEach(j => { c.font = "500 13px " + FONTE; c.fillStyle = "#1d1f2b"; c.fillText(cabem(c, curto(j[0]) + "  ×  " + curto(j[1]), CW - 36), x + 18, yy - 6); yy += 22; });
+        });
+      });
+      y += l.h + GAP;
+    });
+  }
+  return { W, H, draw };
+}
+
+async function desenharImagem(s) {
+  try { await Promise.race([document.fonts.load("700 14px Poppins"), new Promise(r => setTimeout(r, 800))]); } catch (e) {}
+  const lay = s.tipo === "mata" ? layoutMata(s) : layoutGrupos(s);
+  const SC = 2, cv = document.createElement("canvas");
+  cv.width = Math.round(lay.W * SC); cv.height = Math.round(lay.H * SC);
+  const c = cv.getContext("2d");
+  c.scale(SC, SC);
+  const bg = c.createLinearGradient(0, 0, lay.W, lay.H);
+  bg.addColorStop(0, "#eef0ff"); bg.addColorStop(.5, "#fdeefe"); bg.addColorStop(1, "#e3fbf4");
+  c.fillStyle = bg; c.fillRect(0, 0, lay.W, lay.H);
+  c.textAlign = "left"; c.textBaseline = "middle";
+  c.font = "800 24px " + FONTE; c.fillStyle = "#1d1f2b";
+  c.fillText(nomeMod() + (s.tipo === "mata" ? " — Mata-mata" : " — Grupos"), PADI, 32);
+  c.font = "500 13px " + FONTE; c.fillStyle = "#6b7089";
+  c.fillText(TURNOS[ch.turno].nome + " · " + TURNOS[ch.turno].sub, PADI, 56);
+  c.textAlign = "right"; c.font = "500 12px " + FONTE; c.fillStyle = "#6b7089";
+  c.fillText(new Date().toLocaleDateString("pt-BR"), lay.W - PADI, 38);
+  lay.draw(c);
+  return cv;
+}
+
+$("cCopy").onclick = async () => {
+  const s = cur().sorteio; if (!s) return;
+  const b = $("cCopy"), rotulo = "📋 Copiar imagem";
+  const fim = msg => { b.textContent = msg; setTimeout(() => { b.textContent = rotulo; }, 2200); };
+  b.textContent = "Gerando...";
+  const blobP = desenharImagem(s).then(cv => new Promise(res => cv.toBlob(res, "image/png")));
+  const nomeArq = `chaveamento-${ch.mod}-${ch.turno}.png`;
+  try {
+    // passa a promessa direto: mantém o gesto do clique (necessário no Safari/iPhone)
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blobP })]);
+    return fim("✅ Imagem copiada!");
+  } catch (e) {}
+  try {
+    const blob = await blobP;
+    const file = new File([blob], nomeArq, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file] }); return fim("✅ Pronto!"); }
+    throw 0;
+  } catch (e) {
+    if (e && e.name === "AbortError") return fim(rotulo);
+    try {
+      const blob = await blobP, a = el("a"); a.href = URL.createObjectURL(blob); a.download = nomeArq;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      fim("⬇️ Imagem baixada");
+    } catch (e2) { fim("Não deu pra gerar"); }
+  }
+};
+
 /* ---------- confete ---------- */
 const cv = $("fx"), ctx = cv.getContext("2d");
 let parts = [], anim = null;
@@ -552,7 +1129,9 @@ $("nMin").value = Number.isFinite(num.min) ? num.min : "";
 $("nMax").value = Number.isFinite(num.max) ? num.max : "";
 $("nRep").checked = !!num.rep;
 render();
+$("cGrupos").value = cur().grupos || 2;
 renderNum();
+renderChave();
 setModo(modo);
 </script>
 </body>
